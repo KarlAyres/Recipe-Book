@@ -12,12 +12,22 @@ import org.springframework.test.annotation.Rollback;
 
 import java.util.Optional;
 
+/**
+ * The RecipeRepositoryTests class is a series of unit tests. Each of the database functions is tested with simple test
+ * data.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 public class RecipeRepositoryTests {
+    /**
+     * Injects the RecipeRepository class
+     */
     @Autowired private RecipeRepository repo;
 
+    /**
+     * Method to test the functionality of creating a new recipe
+     */
     @Test
     public void testAddNew() {
         Recipe recipe = new Recipe();
@@ -31,6 +41,9 @@ public class RecipeRepositoryTests {
         Assertions.assertThat(savedRecipe.getRecipeId()).isGreaterThan(0);
     }
 
+    /**
+     * Method to test the functionality of listing all the recipes
+     */
     @Test
     public void testListAll() {
         Iterable<Recipe> recipes = repo.findAll();
@@ -41,6 +54,9 @@ public class RecipeRepositoryTests {
         }
     }
 
+    /**
+     * Method to test the functionality of updating a recipe
+     */
     @Test
     public void testUpdate() {
         Integer recipeId = 32;
@@ -53,6 +69,9 @@ public class RecipeRepositoryTests {
         Assertions.assertThat(updatedRecipe.getInstructions()).isEqualTo("Eat the egg raw");
     }
 
+    /**
+     * Method to test the functionality of reading a recipe by matching its id
+     */
     @Test
     public void testGet() {
          Integer recipeId = 32;
@@ -60,7 +79,9 @@ public class RecipeRepositoryTests {
          Assertions.assertThat(optionalRecipe).isPresent();
          System.out.println(optionalRecipe.get());
     }
-
+    /**
+     * Method to test the functionality of deleting a recipe by matching its id
+     */
     @Test
     public void testDelete() {
         Integer recipeId = 32;

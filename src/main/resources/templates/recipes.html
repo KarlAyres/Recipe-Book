@@ -10,6 +10,13 @@
   <div><h2>Manage Recipes</h2></div>
   <div class = "m-2">
     <a class = "h3" th:href = "@{/recipes/new}">Add New Recipe</a>
+  </div>
+
+  <div th:if = "${message}" class = "alert alert-success text-center">
+    [[${message}]]
+  </div>
+
+  <div>
     <table class = "table table-bordered">
       <thead class = "thead-dark">
       <tr>
