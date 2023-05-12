@@ -9,8 +9,8 @@ import java.util.Optional;
 /**
  * The RecipeService class is implemented by the RecipeController class, and retrieves the information requested by the
  * controller class. The RecipeRepository class is implemented by the methods of this class to perform operations on the
- * database.
- *
+ * database. The class is annotated with the @Service annotation to indicate that it is a service class. The @Autowired
+ * annotation injects the RecipeRepository class's dependencies into the service class.
  * @author Karl Ayres
  * @version 1.0
  * @since 14/04/2023
@@ -18,28 +18,29 @@ import java.util.Optional;
 @Service
 public class RecipeService {
     /**
-     * Injects the RecipeRepository class
+     * Injects the RecipeRepository class's dependencies into the service class
      */
     @Autowired private RecipeRepository repo;
 
     /**
-     * List all recipes using findAll iterable, calls RecipeRepository for database operations
-     * @return List of recipe objects
+     * Lists all recipes, calls RecipeRepository for database operations.
+     * @return list of all recipes
      */
     public List<Recipe> listAll() {
         return (List<Recipe>) repo.findAll();
     }
 
     /**
-     * Save new recipe, calls RecipeRepository for database operations
-     * @param recipe is a new recipe object
+     * Saves recipe object, calls RecipeRepository for database operations.
+     * @param recipe recipe object to be saved
      */
     public void save(Recipe recipe) {
         repo.save(recipe);
     }
 
     /**
-     * Getter for recipe object, matches a recipe to its id. Throws exception if no matching id is found.
+     * Gets matching recipe object by id. Throws exception if no matching id is found. Calls RecipeRepository for database
+     * operations.
      * @param recipeId unique id assigned to each recipe
      * @return recipe object matched to id
      * @throws RecipeNotFoundException if the id does not match that of an existing recipe
@@ -53,7 +54,8 @@ public class RecipeService {
     }
 
     /**
-     * Deletes matching recipe object by id. Throws exception if no matching id is found.
+     * Deletes matching recipe object by id. Throws exception if no matching id is found. Calls RecipeRepository for database
+     * operations.
      * @param recipeId unique id assigned to each recipe
      * @throws RecipeNotFoundException if the id does not match that of an existing recipe
      */

@@ -3,8 +3,8 @@ package com.nighthawk.recipe;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * RecipeRepository interface is an extension of the Spring CrudRepository framework. The interface is implemented to
- * handle the CRUD operations.
+ * The RecipeRepository interface is implemented by the RecipeService class, and performs operations on the database.
+ * The RecipeRepository interface extends the CrudRepository interface, which provides CRUD operations.
  *
  * @author Karl Ayres
  * @version 1.0

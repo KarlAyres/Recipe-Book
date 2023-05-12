@@ -12,7 +12,19 @@ import java.util.List;
 
 /**
  * The RecipeController class and its methods process server requests by handling the user input and implementing the
- * RecipeService class. When a particular URL is requested, the appropriate method is invoked.
+ * RecipeService class. When a particular URL is requested, the appropriate method is invoked. The methods return the
+ * name of the view to be rendered, along with any model data needed to render the view.
+ * The @Controller annotation indicates that the class is a controller. The @Autowired annotation tells Spring to
+ * inject an instance of the RecipeService class into the controller.
+ * The @GetMapping annotation is used to map HTTP GET requests onto specific handler methods. The @PostMapping
+ * annotation is used to map HTTP POST requests onto specific handler methods.
+ * The @PathVariable annotation is used to extract a variable from the URL. The @ModelAttribute annotation
+ * binds a method parameter or method return value to a named model attribute and then exposes it to a web
+ * view.
+ * The Model interface defines a holder for model attributes and is primarily designed for adding
+ * attributes to the model. The RedirectAttributes interface extends the Model interface and adds a
+ * method for setting flash attributes. Flash attributes are saved temporarily before the redirect (typically
+ * in the session) and are available only during the request redirected to.
  *
  * @author Karl Ayres
  * @version 1.0
@@ -23,11 +35,13 @@ public class RecipeController {
 
     /**
      * Injects the RecipeService class
+     * @see RecipeService
      */
     @Autowired private RecipeService service;
 
     /**
      * Handles the request for reading the list of recipes
+     * @param model is a holder for model attributes
      */
     @GetMapping("/recipes")
     public String showRecipeList(Model model) {
@@ -37,7 +51,7 @@ public class RecipeController {
     }
 
     /**
-     * Handles the request for "new" interface, displays new message.
+     * Handles the request for "new" interface, displays empty form. Returns user to recipe list.
      */
     @GetMapping("/recipes/new")
     public String showNewForm(Model model) {
@@ -47,7 +61,8 @@ public class RecipeController {
     }
 
     /**
-     * Handles the request for "save" interface, displays save message. Returns user to recipe list.
+     * Handles the request for "save" interface, allows saving of a recipe and updates the database. Displays save
+     * confirmation message. Returns user to recipe list.
      */
     @PostMapping("/recipes/save")
     public String saveRecipe(Recipe recipe, RedirectAttributes redirectAttributes) {
@@ -57,8 +72,8 @@ public class RecipeController {
     }
 
     /**
-     * Handles the request for "edit" interface, allows editing of a recipe and saves to the database. Returns user to
-     * recipe list.
+     * Handles the request for "edit" interface, allows editing of a recipe and updates the database. Displays edit
+     * confirmation message. Returns user to recipe list.
      */
     @GetMapping("/recipes/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer recipeId, Model model, RedirectAttributes redirectAttributes) {
@@ -75,7 +90,7 @@ public class RecipeController {
 
     /**
      * Handles the request for "delete" interface, allows deletion of a recipe and updates the database. Displays delete
-     * message. Returns user to recipe list.
+     * confirmation message. Returns user to recipe list.
      */
     @GetMapping ("/recipes/delete/{id}")
     public String deleteRecipe(@PathVariable("id") Integer recipeId, RedirectAttributes redirectAttributes) {

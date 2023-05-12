@@ -2,8 +2,15 @@ package com.nighthawk.recipe;
 import jakarta.persistence.*;
 
 /**
- * The recipe class is implemented to create recipe objects. Each recipe object will have an id, a name, a set of
- * instructions, and a list of ingredients.
+ * The Recipe class is the model for the recipebook database. The class is implemented by the RecipeService class, and
+ * retrieves the information requested by the service class. The RecipeRepository class is implemented by the methods of
+ * this class to perform operations on the database.
+ * The class is annotated with the @Entity annotation to indicate that it is a JPA entity.
+ * The @Table annotation specifies the name of the database table to be used for mapping.
+ * The @Id annotation specifies the primary key of the entity.
+ * The @GeneratedValue annotation specifies that the primary key is automatically allocated by the database.
+ * The @Column annotation specifies the name of the column in the database table to be used for mapping, and specifies
+ * the constraints to be applied to the column.
  *
  * @author Karl Ayres
  * @version 1.0
@@ -14,7 +21,7 @@ import jakarta.persistence.*;
 public class Recipe {
 
     /**
-     * Recipe data fields mapped to their respective columns in the recipebook database
+     * Recipe class fields
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,7 +84,7 @@ public class Recipe {
     }
 
     /**
-    Override toString method to display recipe object fields
+     * Override toString method to display recipe object fields
      */
     @Override
     public String toString() {

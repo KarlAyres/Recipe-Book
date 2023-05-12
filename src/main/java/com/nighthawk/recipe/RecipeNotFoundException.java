@@ -1,9 +1,10 @@
 package com.nighthawk.recipe;
 
 /**
- * RecipeNotFoundException handles invalid user input. If no matching recipe id is found, the exception is thrown. Error
- * message can be altered per instantiation.
- *
+ * The RecipeNotFoundException class is a custom exception class that is thrown when a recipe is not found in the
+ * database.
+ * The exception is thrown by the RecipeService class,and is handled by the RecipeController class.
+ * The exception is thrown when the user attempts to perform CRUD operations on a recipe that does not exist.
  * @author Karl Ayres
  * @version 1.0
  * @since 14/04/2023

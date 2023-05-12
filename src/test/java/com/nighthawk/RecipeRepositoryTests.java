@@ -14,7 +14,22 @@ import java.util.Optional;
 
 /**
  * The RecipeRepositoryTests class is a series of unit tests. Each of the database functions is tested with simple test
- * data.
+ * data. The tests are run using the JUnit framework.
+ * The tests are run using the @DataJpaTest annotation, which allows the tests to run in the context of a JPA database.
+ * The @AutoConfigureTestDatabase annotation is used to configure the test database to use the application properties.
+ * The @Rollback annotation is used to prevent the tests from rolling back the changes made to the database.
+ * The @Autowired annotation is used to inject the RecipeRepository class into the test class.
+ * The @Test annotation is used to identify the methods that are run as tests.
+ * The Assertions.assertThat() method is used to assert that the test results are as expected.
+ * The Assertions.assertThatThrownBy() method is used to assert that the test results are as expected, and that an
+ * exception is thrown.
+ *
+ * @see Recipe
+ * @see RecipeRepository
+ *
+ * @author Karl Ayres
+ * @version 1.1 Added documentation
+ * @since 14/04/2023
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -26,7 +41,10 @@ public class RecipeRepositoryTests {
     @Autowired private RecipeRepository repo;
 
     /**
-     * Method to test the functionality of creating a new recipe
+     * Method to test the functionality of adding a new recipe. The test data is created using the Recipe class.
+     * The test data is saved to the database using the save() method of the RecipeRepository class.
+     * The assertThat() method is used to assert that the saved recipe is not null, and that the recipe id is greater
+     * than 0.
      */
     @Test
     public void testAddNew() {
